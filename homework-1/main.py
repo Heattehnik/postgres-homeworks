@@ -10,8 +10,8 @@ def main():
                 data = DictReader(file)
                 i = 1
                 for row in data:
-                    cur.execute(f'INSERT INTO employees VALUES (%s, %s, %s, %s, %s, %s)', (i, row["first_name"],
-                                row["last_name"], row["title"], row["birth_date"], row["notes"]))
+                    cur.execute(f'INSERT INTO employees VALUES (first_name, last_name, title, birth_date, notes)',
+                                (row["first_name"], row["last_name"], row["title"], row["birth_date"], row["notes"]))
                     i += 1
             with open('./north_data/customers_data.csv', newline='') as file:
                 data = DictReader(file)
