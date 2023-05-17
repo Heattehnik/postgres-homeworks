@@ -1,6 +1,7 @@
 -- SQL-команды для создания таблиц
 create table employees
 (
+    employee_id serial UNIQUE not null,
     first_name varchar(50) not null,
     last_name  varchar(50) not null,
     title      varchar(50) not null,
@@ -13,7 +14,7 @@ create table customers (
     contact_name varchar(100) not null
 );
 create table orders (
-    order_id serial not null,
+    order_id serial UNIQUE not null,
     customer_id varchar(10) references customers(customer_id),
     employee_id int not null,
     order_date date not null,
