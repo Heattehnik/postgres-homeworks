@@ -4,13 +4,14 @@ from csv import DictReader
 
 
 def main():
-    with psycopg2.connect(host='localhost', database='north', user='postgres', password='2901') as conn:
+    with psycopg2.connect(host='localhost', database='north', user='roman', password='2901') as conn:
         with conn.cursor() as cur:
             with open('./north_data/employees_data.csv', newline='') as file:
                 data = DictReader(file)
                 i = 1
                 for row in data:
-                    cur.execute(f'INSERT INTO employees VALUES (first_name, last_name, title, birth_date, notes)',
+                    cur.execute(f'INSERT INTO employees(first_name, last_name, title, birth_date, notes) '
+                                f'VALUES (%s, %s, %s, %s, %s)',
                                 (row["first_name"], row["last_name"], row["title"], row["birth_date"], row["notes"]))
                     i += 1
             with open('./north_data/customers_data.csv', newline='') as file:
