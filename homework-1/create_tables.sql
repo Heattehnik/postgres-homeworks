@@ -16,7 +16,7 @@ create table customers (
 create table orders (
     order_id serial UNIQUE not null,
     customer_id varchar(10) references customers(customer_id),
-    employee_id int not null,
+    employee_id int not null references employees(employee_id),
     order_date date not null,
     ship_city varchar(50)
 
